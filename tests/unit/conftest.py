@@ -98,15 +98,6 @@ def mock_ansible_module_class():
 
 
 @pytest.fixture
-def common_module_params():
-    """Fixture providing common module parameters"""
-    return {
-        'openshift_version': None,
-        'cpu_architecture': None,
-    }
-
-
-@pytest.fixture
 def api_headers(mock_api_token):
     """Fixture providing standard API headers"""
     return {
@@ -127,55 +118,6 @@ def cluster_module_params():
     }
 
 
-@pytest.fixture
-def events_module_params():
-    """Fixture providing events module specific parameters"""
-    return {
-        'cluster_id': None,
-        'limit': None,
-        'order': 'ascending',
-        'offset': 0,
-        'severities': None,
-    }
-
-
-@pytest.fixture
-def support_levels_module_params():
-    """Fixture providing support_levels module specific parameters"""
-    return {
-        'resource_type': 'architectures',
-        'openshift_version': '4.18.1',
-        'cpu_architecture': 'x86_64',
-        'platform_type': None,
-        'external_platform_name': None,
-    }
-
-
-@pytest.fixture
-def infra_envs_module_params():
-    """Fixture providing infra_envs module specific parameters"""
-    return {
-        'state': None,
-        'name': None,
-        'pull_secret': None,
-    }
-
-
-@pytest.fixture
-def openshift_versions_module_params():
-    """Fixture providing openshift_versions module specific parameters"""
-    return {
-        'version': None,
-        'only_latest': False,
-    }
-
-
-@pytest.fixture
-def supported_operators_module_params():
-    """Fixture providing supported_operators module specific parameters"""
-    return {}
-
-
 @pytest.fixture(autouse=True)
 def mock_missing_requests_lib():
     """Auto-used fixture to ensure HAS_REQUESTS is True for tests"""
@@ -185,8 +127,7 @@ def mock_missing_requests_lib():
     
     # Patch all known modules that check for requests
     module_names = [
-        'clusters', 'events', 'infra_envs', 'openshift_versions', 
-        'support_levels', 'supported_operators'
+        'clusters'  # Only keeping clusters as our example module
     ]
     
     for module_name in module_names:

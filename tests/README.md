@@ -23,12 +23,7 @@ tests/
 │   ├── conftest.py            # Pytest configuration and fixtures
 │   ├── base_test.py           # Base test classes and utilities
 │   ├── requirements.txt       # Test dependencies
-│   ├── test_clusters.py       # Tests for clusters module
-│   ├── test_events.py         # Tests for events module
-│   ├── test_infra_envs.py     # Tests for infra_envs module
-│   ├── test_openshift_versions.py  # Tests for openshift_versions module
-│   ├── test_support_levels.py # Tests for support_levels module
-│   └── test_supported_operators.py  # Tests for supported_operators module
+│   └── test_clusters.py       # Example test for clusters module
 └── sanity/                    # Ansible sanity test configurations
     ├── ignore-2.17.txt
     ├── ignore-2.18.txt
@@ -53,10 +48,10 @@ make test-unit
 # Run with coverage
 make test-coverage
 
-# Run specific test file
+# Run the example test file
 make test-file FILE=test_clusters.py
 
-# Run tests for specific module
+# Run tests for the clusters module
 make test-module MODULE=clusters
 
 # Quick smoke test
@@ -150,12 +145,12 @@ def test_api_call(self, mock_ansible_module, mock_requests_get, mock_get_token):
 ### Current Coverage
 
 The test suite provides comprehensive coverage for:
-- ✅ **API Authentication** - All modules test authentication headers
+- ✅ **API Authentication** - Test authentication headers
 - ✅ **Error Handling** - API errors, missing dependencies, invalid responses
 - ✅ **Parameter Validation** - Required parameters, parameter filtering
 - ✅ **Request Construction** - URL construction, query parameters, request bodies
 - ✅ **Response Processing** - Success and error response handling
-- ✅ **Module-Specific Logic** - Each module's unique functionality
+- ✅ **Module-Specific Logic** - Module's unique functionality (demonstrated with clusters)
 
 ### Coverage Goals
 
@@ -177,7 +172,7 @@ open htmlcov/index.html
 
 ### 1. Create Test File
 ```bash
-cp tests/unit/test_supported_operators.py tests/unit/test_new_module.py
+cp tests/unit/test_clusters.py tests/unit/test_new_module.py
 ```
 
 ### 2. Update Test Class
@@ -195,7 +190,7 @@ class TestNewModuleModule(BaseModuleTest, ModuleTestMixin):
 ```
 
 ### 3. Add Module-Specific Tests
-- Test successful API calls
+- Test successful API calls (see clusters example)
 - Test error handling
 - Test parameter validation
 - Test any unique module functionality

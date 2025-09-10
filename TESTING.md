@@ -59,50 +59,16 @@ open htmlcov/index.html
 - API header fixtures
 - Response data fixtures
 
-## Test Coverage by Module
+## Test Coverage Example
 
-### ✅ clusters
-- ✅ List clusters (with/without hosts)
-- ✅ Create cluster (with pull secret validation)
-- ✅ Delete cluster
-- ✅ API error handling
-- ✅ Parameter validation
-- ✅ Utility function testing (`remove_module_fields`)
+### ✅ clusters (Example Module)
+- ✅ List clusters - Basic API call with authentication
+- ✅ API error handling - Failed requests and error responses  
+- ✅ Missing dependencies - Handling missing `requests` library
+- ✅ Parameter validation - Module parameter handling
+- ✅ Response processing - Success/failure response handling
 
-### ✅ events
-- ✅ List events (all parameters)
-- ✅ Pagination (limit, offset, order)
-- ✅ Severity filtering (single/multiple)
-- ✅ Cluster ID filtering
-- ✅ List parameter handling (comma-separated)
-- ✅ Default parameter inclusion
-
-### ✅ infra_envs
-- ✅ Create infra-env
-- ✅ Pull secret handling (no_log validation)
-- ✅ Required parameter validation
-- ✅ API error handling
-- ✅ Utility function testing
-
-### ✅ openshift_versions
-- ✅ List all versions
-- ✅ Version filtering
-- ✅ Latest version filtering
-- ✅ Parameter combination testing
-- ✅ Empty parameter exclusion
-
-### ✅ support_levels
-- ✅ Query architectures
-- ✅ Query features (all parameters)
-- ✅ External platform handling
-- ✅ Parameter filtering by resource type
-- ✅ None value exclusion
-
-### ✅ supported_operators
-- ✅ List supported operators
-- ✅ JSON/text response handling
-- ✅ Empty response handling
-- ✅ No parameter module testing
+This example demonstrates the testing patterns that can be applied to any module in the collection.
 
 ## Running Tests
 
@@ -195,30 +161,9 @@ cp tests/unit/test_supported_operators.py tests/unit/test_new_module.py
 
 ### 2. Update Test Class
 
+Follow the pattern from `test_clusters.py` - copy the file and modify:
+
 ```python
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Unit tests for new_module module
-"""
-
-import unittest
-from unittest.mock import patch, MagicMock
-import sys
-import os
-
-# Add the plugins directory to the path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', 'plugins', 'modules'))
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', 'plugins', 'module_utils'))
-
-from base_test import BaseModuleTest, ModuleTestMixin
-
-try:
-    import new_module
-except ImportError:
-    new_module = None
-
-
 class TestNewModuleModule(BaseModuleTest, ModuleTestMixin):
     """Test cases for new_module module"""
 
@@ -238,18 +183,7 @@ class TestNewModuleModule(BaseModuleTest, ModuleTestMixin):
     def get_default_params(self):
         return self.default_params.copy()
 
-    # Add module-specific tests here
-    @patch('new_module.apitoken.GetToken')
-    @patch('new_module.requests.get')  # or post/delete as appropriate
-    @patch('new_module.AnsibleModule')
-    def test_module_specific_functionality(self, mock_ansible_module, mock_requests, mock_get_token):
-        """Test module-specific functionality"""
-        # Test implementation
-        pass
-
-
-if __name__ == '__main__':
-    unittest.main()
+    # Add module-specific tests following the clusters example
 ```
 
 ### 3. Required Test Methods

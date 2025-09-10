@@ -61,12 +61,10 @@ make smoke-test
 #### Test Structure
 ```
 tests/
-├── unit/                      # Unit tests for all modules
+├── unit/                      # Unit tests
 │   ├── conftest.py           # Pytest configuration and fixtures
 │   ├── base_test.py          # Base test classes and utilities
-│   ├── test_clusters.py      # Tests for clusters module
-│   ├── test_events.py        # Tests for events module
-│   └── ...                   # Tests for other modules
+│   └── test_clusters.py      # Example test (clusters module)
 └── sanity/                   # Ansible sanity test configurations
 ```
 
